@@ -121,6 +121,10 @@ function updateCSSValues() {
 }
 
 function resetCSSValues() {
+    document.querySelector('h2#config-header').innerHTML = "Config - Colors have been reset!";
+    setTimeout(()=>{
+        document.querySelector('h2#config-header').innerHTML = "Config";
+    }, 2000);
     r.style.setProperty('--text-color', '#becadf');
     r.style.setProperty('--back-color', '#21252b');
     textsel.value = '#becadf';
@@ -161,7 +165,7 @@ function putLinks() {
         let li = document.createElement("li");
         li.id = `d${i}`
         li.innerHTML = `
-        <label for="name-${i}">Character</label> <input type="text" id="name-${i}" value="${rep}" class="editorRep">
+        <label for="name-${i}">Character</label> <input type="text" id="name-${i}" value="${rep}" class="editorRep" maxlength="2" minlength="1"> 
         <label for="link-${i}">Link</label> <input type="text" id="link-${i}" value="${link}" class="editorLink">
         <a id="delete-link-${i}" data="${i}" style="display:inline-block;">X</a>`;
         linksEditor.appendChild(li);
@@ -182,9 +186,20 @@ document.querySelector('a#more-links').onclick = function() {
     let i = linksEditor.childElementCount;
     li.id = `d${i}`
     li.innerHTML = `
-    <label for="name-${i}">Character</label> <input type="text" id="name-${i}" value="" class="editorRep">
-    <label for="link-${i}">Link</label> <input type="text" id="link-${i}" value="" class="editorLink">
-    <a id="delete-link-${i}" data="${i}" style="display:inline-block;">X</a>`;
+    <label for="name-${i}">Character</label> <input type="text" id="name-${i}" value="" class="editorRep" maxlength="2" minlength="1">
+    <label for="link-${i}">Link</label> <input type="text" id="link-${i}" value="" class="editorLink"> `;
+    
+    let a = document.createElement('a');
+    a.id = `delete-link${i}`;
+    a.attributes.data = i;
+    a.style = "display:inline-block;";
+    a.innerText = "X";
+    a.onclick = function() {
+        document.querySelector(`li#d${i}`).remove();
+    }
+
+    li.appendChild(a);
+
     linksEditor.appendChild(li);
 };
 
@@ -192,10 +207,28 @@ document.querySelector('a#save-links').onclick = function() {
     const linksEditor = document.querySelector("ul#links");
     let linksToSave = [];
     let children = linksEditor.children;
+    let foundErrors = false;
     for (let i = 0; i < linksEditor.childElementCount; i++) {
-        let o = children.item(i);
-        linksToSave.push([o.children[1].value, o.children[3].value]);
+        let o = linksEditor.children[i];
+        if (o.children[1].value.length <= 2 && o.children[1].value.length > 0) {
+            let o = children.item(i);
+            linksToSave.push([o.children[1].value, o.children[3].value]);
+        } else {
+            foundErrors = true;
+        }
     }
-    localStorage.setItem('links',JSON.stringify(linksToSave));
-    putLinks();
+    if (foundErrors == false) {
+        localStorage.setItem('links',JSON.stringify(linksToSave));
+        putLinks();
+
+        document.querySelector('h2#link-header').innerHTML = "Links - Saved!";
+        setTimeout(()=>{
+        document.querySelector('h2#link-header').innerHTML = "Links";
+        }, 2000);
+    } else {
+        document.querySelector('h2#link-header').innerHTML = "Links - Character must be 1 or 2 characters long";
+        setTimeout(()=>{
+        document.querySelector('h2#link-header').innerHTML = "Links";
+        }, 2000);
+    }
 }
