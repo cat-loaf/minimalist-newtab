@@ -146,10 +146,23 @@ div.modal-content input {
     width:2.5%;
     border-radius:5px;
 }
-.modal a {
+div.modal a:not(.link-remove) {
     width:fit-content;
     padding: 2px 10px;
+    border: 2px solid var(--back-color);   
 }
+
+div.modal a:not(.link-remove):hover {
+    box-shadow: #00000040 0px 25px 50px -12px;
+    color:var(--back-color);
+    transform: scale(1.05);
+}
+
+div.modal a.link-remove {
+    width:fit-content;
+    padding:1vh 1vw;
+}
+
 ul li input[type="text"] {
     background-color:var(--text-color);
     color:var(--back-color);

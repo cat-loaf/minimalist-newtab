@@ -167,7 +167,7 @@ function putLinks() {
         li.innerHTML = `
         <label for="name-${i}">Character</label> <input type="text" id="name-${i}" value="${rep}" class="editorRep" maxlength="2" minlength="1"> 
         <label for="link-${i}">Link</label> <input type="text" id="link-${i}" value="${link}" class="editorLink">
-        <a id="delete-link-${i}" data="${i}" style="display:inline-block;">X</a>`;
+        <a id="delete-link-${i}" data="${i}" style="display:inline-block;" class="link-remove">X</a>`;
         linksEditor.appendChild(li);
         i += 1;
     })
@@ -197,6 +197,7 @@ document.querySelector('a#more-links').onclick = function() {
     a.onclick = function() {
         document.querySelector(`li#d${i}`).remove();
     }
+    a.classList += "link-remove";
 
     li.appendChild(a);
 
