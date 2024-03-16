@@ -18,3 +18,5 @@ To preview it on your machine, you can access it at [here](https://cat-loaf.gith
 <img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-1.jpeg?raw=true">
 <img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-3.jpeg?raw=true">
 <img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-2.jpeg?raw=true">
+You can also use emojis for the quick links!
+<img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-4.jpeg?raw=true">
