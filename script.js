@@ -39,6 +39,7 @@ function setDateContents() {
 
 
 var modal = document.getElementById("myModal");
+var modalContent = document.querySelector(".modal-content");
 
 // Get the button that opens the modal
 var btn = document.getElementById("config");
@@ -49,17 +50,42 @@ var span = document.getElementById("close");
 // When the user clicks the button, open the modal 
 btn.onclick = function () {
     modal.style.display = "block";
+    modalContent.animate([
+        { transform:"scale(0.25)"},
+        { transform:"scale(1)" },
+    ],{
+        duration:600,
+        easing:"cubic-bezier(0.83, 0, 0.17, 1)"
+    });
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
-    modal.style.display = "none";
+    modalContent.animate([
+        { transform:"scale(1)" },
+        { transform:"scale(0.25)"},
+    ],{
+        duration:600,
+        easing:"cubic-bezier(0.83, 0, 0.17, 1)"
+    });
+    setTimeout(()=>{
+        modal.style.display = "none";
+    }, 590);
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+        modalContent.animate([
+            { transform:"scale(1)" },
+            { transform:"scale(0.25)"},
+        ],{
+            duration:600,
+            easing:"cubic-bezier(0.83, 0, 0.17, 1)"
+        });
+        setTimeout(()=>{
+            modal.style.display = "none";
+        }, 590);
     }
 }
 
@@ -108,8 +134,68 @@ document.getElementById('back-color').onchange = () => {updateCSSValues()};
 document.getElementById('reset-button').onclick = () => {resetCSSValues()};
 
 // Create links
-// localStorage.setItem('links','N:netflix.com;Y:youtube.com;S:open.spotify.com');
-// function getLinks() {
-//     const linksString = localStorage.getItem('links');
+if (localStorage.getItem('links') == "null" || localStorage.getItem('links') == null) {
+    const links = [['N',"netflix.com"],['Y', "youtube.com"],['S', "open.spotify.com"]];
+    localStorage.setItem('links',JSON.stringify(links));
+}
+
+function putLinks() {
+    let i = 0;
+    const linksNew = JSON.parse(localStorage.getItem('links'));
+    const linksDiv = document.querySelector('div.options');
+    const linksEditor = document.querySelector("ul#links");
+    linksDiv.innerText = "";
+    linksEditor.innerText = "";
+    linksNew.forEach((item)=>{
+        rep = item[0];
+        link = item[1];
+        
+        let a = document.createElement("a");
+        a.target = "_blank";
+        a.href = "https://"+link;
+        a.innerText = rep;
     
-// }
+        
+        linksDiv.appendChild(a);
+        
+        let li = document.createElement("li");
+        li.id = `d${i}`
+        li.innerHTML = `
+        <label for="name-${i}">Character</label> <input type="text" id="name-${i}" value="${rep}" class="editorRep">
+        <label for="link-${i}">Link</label> <input type="text" id="link-${i}" value="${link}" class="editorLink">
+        <a id="delete-link-${i}" data="${i}" style="display:inline-block;">X</a>`;
+        linksEditor.appendChild(li);
+        i += 1;
+    })
+    for (let i = 0; i<linksEditor.childElementCount; i++) {
+        document.querySelector(`a[data="${i}"]`).onclick = function() {
+            document.querySelector(`li#d${i}`).remove();
+        }
+    }
+}
+putLinks();
+
+
+document.querySelector('a#more-links').onclick = function() {
+    const linksEditor = document.querySelector("ul#links");
+    let li = document.createElement("li");
+    let i = linksEditor.childElementCount;
+    li.id = `d${i}`
+    li.innerHTML = `
+    <label for="name-${i}">Character</label> <input type="text" id="name-${i}" value="" class="editorRep">
+    <label for="link-${i}">Link</label> <input type="text" id="link-${i}" value="" class="editorLink">
+    <a id="delete-link-${i}" data="${i}" style="display:inline-block;">X</a>`;
+    linksEditor.appendChild(li);
+};
+
+document.querySelector('a#save-links').onclick = function() {
+    const linksEditor = document.querySelector("ul#links");
+    let linksToSave = [];
+    let children = linksEditor.children;
+    for (let i = 0; i < linksEditor.childElementCount; i++) {
+        let o = children.item(i);
+        linksToSave.push([o.children[1].value, o.children[3].value]);
+    }
+    localStorage.setItem('links',JSON.stringify(linksToSave));
+    putLinks();
+}

@@ -4,38 +4,42 @@
   <title>New Tab</title>
   <meta name="description" content="New tab">
   <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
-  <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <main>
-        <div class="header">
-            <a href="#" id="config">Config</a>
-            <div class="options">
-                <a target="_blank" href="https://youtube.com">Y</a>
-                <a target="_blank" href="https://open.spotify.com">S</a>
-                <a target="_blank" href="https://netflix.com">N</a>
-            </div>
-        </div>
-        <div class="main">
-            <div id="time-display">HH:MM:SS</div>
-            <div id="day-display">DD</div>
-        </div>
-    </main>
-    <aside>
-        <!-- <div class="modal"></div> -->
-        <div id="myModal" class="modal">
+  <main>
+      <div class="header">
+          <a href="#" id="config">Config</a>
+          <div class="options">
 
-            <!-- Modal content -->
-            <div class="modal-content">
-              <span id="close" style="float:right;">&times;</span>
-              <div><h2>Config</h2></div>
-              <div><input type="color" id="text-color"> Text</div>
-              <div><input type="color" id="back-color"> Background</div>
-              <a id='reset-button' style="cursor:pointer; width:fit-content;">Reset</a>
-            </div>
           </div>
-    </aside>
+      </div>
+      <div class="main">
+          <div id="time-display">HH:MM:SS</div>
+          <div id="day-display">DD</div>
+      </div>
+  </main>
+  <aside>
+      <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span id="close" style="float:right;">&times;</span>
+            <div><h2>Config</h2></div>
+            <div><input type="color" id="text-color"> Text</div>
+            <div><input type="color" id="back-color"> Background</div>
+            <a id='reset-button'>Reset Colors</a>
+            <h2>Links</h2>
+            <ul id="links">
+              <!-- <li>
+                <label for="name-0">Char</label><input type="text" id="name-0"> 
+                <label for="link-0">Link</label> <input type="text" id="link-0">
+              </li> -->
+            </ul>
+            <a id='save-links' style="display:inline-block;">Save ↓</a> <a id='more-links' style="display:inline-block;">Add + </a>
+          </div>
+        </div>
+  </aside>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
