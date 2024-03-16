@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>New Tab</title>
+  <meta name="description" content="New tab">
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="header">
+            <a href="#" id="config">Config</a>
+            <div class="options">
+                <a target="_blank" href="https://youtube.com">Y</a>
+                <a target="_blank" href="https://open.spotify.com">S</a>
+                <a target="_blank" href="https://netflix.com">N</a>
+            </div>
+        </div>
+        <div class="main">
+            <div id="time-display">HH:MM:SS</div>
+            <div id="day-display">DD</div>
+        </div>
+    </main>
+    <aside>
+        <!-- <div class="modal"></div> -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span id="close" style="float:right;">&times;</span>
+              <div><h2>Config</h2></div>
+              <div><input type="color" id="text-color"> Text</div>
+              <div><input type="color" id="back-color"> Background</div>
+              <a id='reset-button' style="cursor:pointer; width:fit-content;">Reset</a>
+            </div>
+          </div>
+    </aside>
+</body>
+</html>
