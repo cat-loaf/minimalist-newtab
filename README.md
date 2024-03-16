@@ -15,4 +15,5 @@ For Edge: [here](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chr
 
 # Preview
 <img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-1.jpeg?raw=true">
+<img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-3.jpeg?raw=true">
 <img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-2.jpeg?raw=true">
