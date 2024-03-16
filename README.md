@@ -14,5 +14,7 @@ For Chrome: [here](https://support.google.com/chrome/thread/205881926/it-s-possi
 For Edge: [here](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/extension-sideloading)
 
 # Preview
+To preview it on your machine, you can access it at [here](https://cat-loaf.github.io/minimalist-newtab/) or view screenshots below.
 <img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-1.jpeg?raw=true">
+<img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-3.jpeg?raw=true">
 <img src="https://github.com/cat-loaf/minimalist-newtab/blob/main/preview/preview-2.jpeg?raw=true">
